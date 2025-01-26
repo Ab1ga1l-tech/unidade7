@@ -1,0 +1,32 @@
+import whisper
+import requests
+
+# Função para transcrever o áudio
+def transcrever_audio(arquivo_audio):
+    modelo = whisper.load_model("base")
+    resultado = modelo.transcribe(arquivo_audio)
+    return resultado['text']
+
+# Função para extrair pontos-chave com Ollama
+def extrair_pontos_chave(texto):
+    url = "https://api.ollama.com/summarize"  # Exemplo de URL da API, altere conforme necessário
+    dados = {"text": texto}
+    
+    resposta = requests.post(url, json=dados)
+    
+    if resposta.status_code == 200:
+        resumo = resposta.json().get("summary", "Resumo não encontrado.")
+        return resumo
+    else:
+        return "Erro ao conectar com o Ollama."
+
+# Função principal do pipeline
+def pipeline_audio_para_resumo(arquivo_audio):
+    texto_transcrito = transcrever_audio(arquivo_audio)
+    resumo = extrair_pontos_chave(texto_transcrito)
+    return resumo
+
+# Exemplo de uso
+arquivo_audio = 'caminho/do/arquivo_audio.wav'  # Substitua pelo caminho do seu arquivo
+resumo_final = pipeline_audio_para_resumo(arquivo_audio)
+print("Resumo Final:", resumo_final)
