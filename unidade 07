@@ -2,9 +2,9 @@ import whisper
 import requests
 
 # Função para transcrever o áudio
-def transcrever_audio(arquivo_audio):
+def transcrever_audio(WhatsApp-Ptt-2025-01-26-às-11.00.07.mp3):
     modelo = whisper.load_model("base")
-    resultado = modelo.transcribe(arquivo_audio)
+    resultado = modelo.transcribe(WhatsApp-Ptt-2025-01-26-às-11.00.07.mp3)
     return resultado['text']
 
 # Função para extrair pontos-chave com Ollama
@@ -21,12 +21,12 @@ def extrair_pontos_chave(texto):
         return "Erro ao conectar com o Ollama."
 
 # Função principal do pipeline
-def pipeline_audio_para_resumo(arquivo_audio):
-    texto_transcrito = transcrever_audio(arquivo_audio)
+def pipeline_audio_para_resumo(WhatsApp-Ptt-2025-01-26-às-11.00.07.mp3):
+    texto_transcrito = transcrever_audio(WhatsApp-Ptt-2025-01-26-às-11.00.07.mp3)
     resumo = extrair_pontos_chave(texto_transcrito)
     return resumo
 
 # Exemplo de uso
-arquivo_audio = 'caminho/do/arquivo_audio.wav'  # Substitua pelo caminho do seu arquivo
-resumo_final = pipeline_audio_para_resumo(arquivo_audio)
+arquivo_audio = 'WhatsApp-Ptt-2025-01-26-às-11.00.07.mp3'  
+resumo_final = pipeline_audio_para_resumo(WhatsApp-Ptt-2025-01-26-às-11.00.07.mp3)
 print("Resumo Final:", resumo_final)
